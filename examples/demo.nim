@@ -3,6 +3,7 @@ import strformat
 import unicode
 
 import nanovg
+import nanovg/textutils
 
 
 const
