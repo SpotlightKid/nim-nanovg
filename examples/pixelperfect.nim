@@ -36,15 +36,6 @@ proc createWindow(): Window =
   newWindow(cfg)
 
 
-proc drawLabel(vg: NVGcontext, text: string, x, y, w, h: float) =
-  vg.fontSize(18.0)
-  vg.fontFace("sans")
-  vg.fillColor(white(128))
-
-  vg.textAlign(haLeft, vaMiddle)
-  discard vg.text(x, y+h*0.5, text)
-
-
 proc rectStroke(vg: NVGcontext) =
   var
     x = 0.0
