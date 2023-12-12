@@ -7,6 +7,7 @@ license       = "MIT"
 
 skipDirs = @["doc", "examples"]
 
+srcDir = "src"
 
 # Dependencies
 
