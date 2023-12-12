@@ -508,13 +508,9 @@ type ImageData* = object
 proc size*(d: ImageData): Natural =
   d.width * d.height * d.numChannels
 
-proc `=destroy`*(d: var ImageData) =
+proc `=destroy`*(d: ImageData) =
   if d.data != nil:
     stbi_image_free(d.data)
-    d.width = 0
-    d.height = 0
-    d.numChannels = 0
-    d.data = nil
 
 
 proc loadImage*(filename: string, desiredChannels: Natural = 4): ImageData =
