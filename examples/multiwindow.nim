@@ -1,3 +1,5 @@
+import std/options
+
 import glfw
 
 import glad/gl
@@ -25,10 +27,10 @@ proc createWindow(w, h: int, title: string,
                   transparent: bool = false,
                   decorated: bool = true): Window =
   var cfg = DefaultOpenglWindowConfig
-  cfg.size = (w, h)
+  cfg.size = (w.int32, h.int32)
   cfg.title = title
   cfg.resizable = true
-  cfg.bits = (r: 8, g: 8, b: 8, a: 8, stencil: 8, depth: 16)
+  cfg.bits = (r: some(8i32), g: some(8i32), b: some(8i32), a: some(8i32), stencil: some(8i32), depth: some(16i32))
   cfg.nMultiSamples = 4
   cfg.transparentFramebuffer = transparent
   cfg.decorated = decorated
@@ -104,7 +106,7 @@ proc main() =
       (fbWidth, fbHeight) = winA.framebufferSize
       pxRatio = fbWidth / winWidth
 
-    glViewport(0, 0, fbWidth, fbHeight)
+    glViewport(0, 0, fbWidth.GLsizei, fbHeight.GLsizei)
 
     glClear(GL_COLOR_BUFFER_BIT or
             GL_DEPTH_BUFFER_BIT or
@@ -124,7 +126,7 @@ proc main() =
       (fbWidth, fbHeight) = winB.framebufferSize
       pxRatio = fbWidth / winWidth
 
-      glViewport(0, 0, fbWidth, fbHeight)
+      glViewport(0, 0, fbWidth.GLsizei, fbHeight.GLsizei)
 
       glClear(GL_COLOR_BUFFER_BIT or
               GL_DEPTH_BUFFER_BIT or

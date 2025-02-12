@@ -1,5 +1,4 @@
-import math
-import strformat
+import std/[math, options, strformat]
 
 import glfw
 
@@ -75,7 +74,7 @@ proc createWindow(): Window =
   cfg.size = (w: 1000, h: 600)
   cfg.title = "NanoVG FBO Demo"
   cfg.resizable = true
-  cfg.bits = (r: 8, g: 8, b: 8, a: 8, stencil: 8, depth: 16)
+  cfg.bits = (r: some(8i32), g: some(8i32), b: some(8i32), a: some(8i32), stencil: some(8i32), depth: some(16i32))
   cfg.debugContext = true
 
   when not defined(windows):
@@ -147,7 +146,7 @@ proc main() =
     renderPattern(vg, fb, t, pxRatio)
 
     # Update and render
-    glViewport(0, 0, fbWidth, fbHeight)
+    glViewport(0, 0, fbWidth.GLsizei, fbHeight.GLsizei)
     glClearColor(0.3, 0.3, 0.32, 1.0)
 
     glClear(GL_COLOR_BUFFER_BIT or

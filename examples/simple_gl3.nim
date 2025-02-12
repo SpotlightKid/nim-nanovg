@@ -1,3 +1,5 @@
+import std/options
+
 import glfw
 
 import glad/gl
@@ -10,7 +12,7 @@ var cfg = DefaultOpenglWindowConfig
 cfg.size = (w: 400, h: 400)
 cfg.title = "NanoVG Simple GL3"
 cfg.resizable = true
-cfg.bits = (r: 8, g: 8, b: 8, a: 8, stencil: 8, depth: 16)
+cfg.bits = (r: some(8i32), g: some(8i32), b: some(8i32), a: some(8i32), stencil: some(8i32), depth: some(16i32))
 
 when not defined(windows):
   cfg.version = glv32
